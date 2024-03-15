@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://c24pkw2x1mnps"]
+
+[ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="1_n0x3g"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_qhial"]
+[ext_resource type="Shader" uid="uid://bucq86mj7guig" path="res://shaders/doodle.tres" id="2_88ku3"]
+[ext_resource type="Texture2D" uid="uid://dum7mvtrgx21x" path="res://sprites/character_sheet.png" id="2_spbsl"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="4_x0hjo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pdew"]
+shader = ExtResource("2_88ku3")
+
+[sub_resource type="Animation" id="Animation_2bkqw"]
+resource_name = "player_idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_wutq3"]
+resource_name = "player_walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2iai"]
+_data = {
+"player_idle": SubResource("Animation_2bkqw"),
+"player_walk": SubResource("Animation_wutq3")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knkgn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cipva"]
+radius = 29.0
+height = 132.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_qhial")
+speed = 5.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8pdew")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_spbsl")
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_f2iai")
+}
+
+[node name="Weapon" type="Sprite2D" parent="."]
+position = Vector2(64, 10)
+scale = Vector2(0.7, 0.35)
+texture = ExtResource("1_n0x3g")
+script = ExtResource("4_x0hjo")
+orbit_radius = 75.0
+bullet_spawn_offset = Vector2(100, 0)
+bullet_damage = 20
+knockback_power = 2000.0
+
+[node name="ShootInterval" type="Timer" parent="Weapon"]
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+material = SubResource("ShaderMaterial_knkgn")
+shape = SubResource("CapsuleShape2D_cipva")
+
+[connection signal="timeout" from="Weapon/ShootInterval" to="Weapon" method="_on_shoot_interval_timeout"]

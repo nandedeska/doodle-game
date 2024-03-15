@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://tabf5msi00c5"]
+
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_17on5"]
+[ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="1_nncgs"]
+[ext_resource type="Shader" uid="uid://bucq86mj7guig" path="res://shaders/doodle.tres" id="2_jsoau"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_je36u"]
+shader = ExtResource("2_jsoau")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v084q"]
+size = Vector2(64, 116)
+
+[node name="Enemy" type="Area2D" groups=["enemy"]]
+script = ExtResource("1_17on5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_je36u")
+rotation = 3.14159
+scale = Vector2(0.5, 0.9)
+texture = ExtResource("1_nncgs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v084q")
+
+[node name="Knockback Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Knockback Timer" to="." method="_on_knockback_timer_timeout"]

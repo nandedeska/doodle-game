@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://duehrlll3ero4"]
+
+[ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="1_n0x3g"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_qhial"]
+[ext_resource type="Texture2D" uid="uid://dum7mvtrgx21x" path="res://sprites/character_sheet.png" id="2_spbsl"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="4_x0hjo"]
+
+[sub_resource type="Animation" id="Animation_5imcs"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2iai"]
+_data = {
+"idle": SubResource("Animation_5imcs")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cipva"]
+radius = 37.0
+height = 146.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_qhial")
+speed = 5.0
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_spbsl")
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_f2iai")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Weapon" type="Sprite2D" parent="."]
+position = Vector2(64, 10)
+scale = Vector2(0.7, 0.35)
+texture = ExtResource("1_n0x3g")
+script = ExtResource("4_x0hjo")
+orbit_radius = 120.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_cipva")

@@ -1,0 +1,60 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://bucq86mj7guig"]
+
+[ext_resource type="Script" path="res://addons/shaderV/uv/animated/doodleUV.gd" id="1_sp22f"]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_o1fri"]
+default_input_values = [1, 0.5, 2, 4, 3, 0.7, 4, 0.015, 5, 0.0]
+initialized = true
+script = ExtResource("1_sp22f")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_fykuj"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0gi1r"]
+input_name = "time"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+// DoodleUV
+#include \"res://addons/shaderV/uv/animated/doodleUV.gdshaderinc\"
+
+void vertex() {
+// Input:3
+	vec2 n_out3p0 = UV;
+
+
+// Input:4
+	float n_out4p0 = TIME;
+
+
+	vec3 n_out2p0;
+// DoodleUV:2
+	float n_in2p1 = 0.50000;
+	int n_in2p2 = 4;
+	float n_in2p3 = 0.70000;
+	float n_in2p4 = 0.01500;
+	{
+		n_out2p0.xy = _doodleUVFunc(vec3(n_out3p0, 0.0).xy, n_in2p4, n_out4p0, n_in2p1, int(n_in2p2), n_in2p3);
+	}
+
+
+// Output:0
+	UV = vec2(n_out2p0.xy);
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/vertex/2/node = SubResource("VisualShaderNodeCustom_o1fri")
+nodes/vertex/2/position = Vector2(100, 200)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_fykuj")
+nodes/vertex/3/position = Vector2(-260, 200)
+nodes/vertex/4/node = SubResource("VisualShaderNodeInput_0gi1r")
+nodes/vertex/4/position = Vector2(-180, 320)
+nodes/vertex/connections = PackedInt32Array(3, 0, 2, 0, 2, 0, 0, 1, 4, 0, 2, 5)
+nodes/fragment/0/position = Vector2(540, 140)

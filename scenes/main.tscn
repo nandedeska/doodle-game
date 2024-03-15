@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://hd72b2wykega"]
+
+[ext_resource type="Script" path="res://scripts/hover.gd" id="1_605hu"]
+[ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="2_t0cv7"]
+[ext_resource type="PackedScene" uid="uid://c24pkw2x1mnps" path="res://scenes/player.tscn" id="3_homsb"]
+[ext_resource type="Script" path="res://scripts/enemy_manager.gd" id="4_21us5"]
+[ext_resource type="Texture2D" uid="uid://c0pbfdnu78fh1" path="res://sprites/bg.png" id="5_k08l1"]
+[ext_resource type="Shader" uid="uid://duckv0vxw77ug" path="res://shaders/background.tres" id="5_vn3ma"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxnma"]
+shader = ExtResource("5_vn3ma")
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2l0b"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node2D"]
+
+[node name="HoverObject" type="Node2D" parent="."]
+script = ExtResource("1_605hu")
+amplitude = 10.0
+frequency = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HoverObject"]
+position = Vector2(-399, -149)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_t0cv7")
+
+[node name="Player" parent="." instance=ExtResource("3_homsb")]
+
+[node name="EnemyManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_21us5")
+player = NodePath("../Player")
+
+[node name="SpawnTimer" type="Timer" parent="EnemyManager"]
+wait_time = 5.0
+autostart = true
+
+[node name="DifficultyTimer" type="Timer" parent="EnemyManager"]
+wait_time = 30.0
+autostart = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 1920)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("5_k08l1")
+centered = false
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = 2
+visible = false
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_mirroring = Vector2(1920, 1920)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground2/ParallaxLayer2"]
+material = SubResource("ShaderMaterial_vxnma")
+offset_right = 1920.0
+offset_bottom = 1080.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Time Elapsed Text" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.5
+offset_top = 20.0
+offset_right = 25.5
+offset_bottom = 46.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "HELLO"
+label_settings = SubResource("LabelSettings_s2l0b")
+horizontal_alignment = 1
+
+[node name="Enemy Counter Text" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.5
+offset_top = 50.0
+offset_right = 25.5
+offset_bottom = 76.0
+grow_horizontal = 2
+text = "HELLO"
+label_settings = SubResource("LabelSettings_s2l0b")
+horizontal_alignment = 1
+
+[connection signal="timeout" from="EnemyManager/SpawnTimer" to="EnemyManager" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="EnemyManager/DifficultyTimer" to="EnemyManager" method="_on_difficulty_timer_timeout"]

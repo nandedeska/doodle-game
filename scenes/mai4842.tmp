@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://hd72b2wykega"]
+
+[ext_resource type="Script" path="res://scripts/hover.gd" id="1_605hu"]
+[ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="2_t0cv7"]
+[ext_resource type="PackedScene" uid="uid://duehrlll3ero4" path="res://scenes/player.tscn" id="3_homsb"]
+[ext_resource type="Script" path="res://scripts/enemy_manager.gd" id="4_21us5"]
+
+[node name="Main" type="Node2D"]
+
+[node name="HoverObject" type="Node2D" parent="."]
+scale = Vector2(0.5, 1)
+script = ExtResource("1_605hu")
+amplitude = 10.0
+frequency = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HoverObject"]
+position = Vector2(-996, -149)
+texture = ExtResource("2_t0cv7")
+
+[node name="Player" parent="." instance=ExtResource("3_homsb")]
+
+[node name="EnemyManager" type="Node" parent="."]
+script = ExtResource("4_21us5")
+spawn_bounds = Vector4(-1000, 1000, -1000, -1000)
+
+[node name="SpawnTimer" type="Timer" parent="EnemyManager"]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="EnemyManager/SpawnTimer" to="EnemyManager" method="_on_spawn_timer_timeout"]
