@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://xy66lrgl1gq0"]
+
+[ext_resource type="Shader" uid="uid://bucq86mj7guig" path="res://shaders/doodle.tres" id="1_2tl1f"]
+[ext_resource type="Texture2D" uid="uid://bn05djergygml" path="res://sprites/Stapler.png" id="2_5c6pw"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="3_0uvna"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hnyra"]
+shader = ExtResource("1_2tl1f")
+
+[node name="Stapler" type="Sprite2D"]
+material = SubResource("ShaderMaterial_hnyra")
+rotation = 0.174533
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("2_5c6pw")
+flip_h = true
+script = ExtResource("3_0uvna")
+orbit_radius = 75.0
+bullet_spawn_offset = Vector2(100, 0)
+bullet_damage = 20
+knockback_power = 200.0
+
+[node name="ShootInterval" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="ShootInterval" to="." method="_on_shoot_interval_timeout"]

@@ -17,11 +17,10 @@ func _physics_process(delta):
 
 	if is_hit:
 		translate(knockback_direction * delta)
-		knockback_direction -= Vector2.ONE * delta
-		print(knockback_direction)
 
 # handles incoming damage
 func hit(damage, knockback):
+	if is_hit: return
 	health -= damage
 	is_hit = true
 	knockback_direction = knockback

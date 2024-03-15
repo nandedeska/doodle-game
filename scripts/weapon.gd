@@ -18,10 +18,8 @@ func _process(delta):
 		position = Vector2(orbit_radius * cos(rotation), orbit_radius * sin(rotation))
 	
 	if rotation >= PI/2 or rotation <= -PI/2:
-		flip_h = true
 		flip_v = true
 	else:
-		flip_h = false
 		flip_v = false
 
 
