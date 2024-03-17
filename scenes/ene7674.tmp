@@ -8,6 +8,7 @@
 shader = ExtResource("2_jsoau")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rx1lu"]
+radius = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v084q"]
 size = Vector2(64, 116)
@@ -18,7 +19,6 @@ lock_rotation = true
 script = ExtResource("1_17on5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-y_sort_enabled = true
 material = SubResource("ShaderMaterial_je36u")
 rotation = 3.14159
 scale = Vector2(0.5, 0.9)
