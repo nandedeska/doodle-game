@@ -6,7 +6,7 @@ const EXP_ORB = preload("res://scenes/xp_orb.tscn")
 var health := maximum_health
 @export var speed := 50.0
 var player : CharacterBody2D
-var xp_value : int = 5
+@export var xp_value := 5
 
 var is_hit : bool
 var direction := Vector2.ZERO

@@ -17,8 +17,8 @@ func _process(delta: float) -> void:
 	var elapsed_time : int = (Time.get_ticks_msec() - time_start) / 1000
 	enemy_count = len(get_tree().get_nodes_in_group("enemy"))
 	
-	$"../CanvasLayer/Time Elapsed Text".text = "%ss" % elapsed_time
-	$"../CanvasLayer/Enemy Counter Text".text = "%s" % enemy_count
+	$"../Debug Texts/Time Elapsed Text".text = "%ss" % elapsed_time
+	$"../Debug Texts/Enemy Counter Text".text = "%s" % enemy_count
 
 
 func spawn() -> void:

@@ -6,7 +6,7 @@ var xp_value := 0
 
 func _physics_process(delta):
 	if in_player_range:
-		position = position.lerp(player.position, delta * 3)
+		position = position.lerp(player.position, delta * 5)
 		
 		if Engine.get_process_frames() % 10 == 0:
 			if position.distance_squared_to(player.position) < 2500:
