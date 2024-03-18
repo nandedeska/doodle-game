@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed : float
 @onready var animation_player := $PlayerSprite/AnimationPlayer
+var xp := 0
 
 
 func _process(delta: float) -> void:
@@ -13,4 +14,9 @@ func _process(delta: float) -> void:
 		animation_player.play("player_idle")
 	else:
 		animation_player.play("player_walk")
+		
+	$"../CanvasLayer/XP Counter".text = "%s XP" % xp
 
+
+func _on_area_2d_area_entered(area):
+	area.in_player_range = true

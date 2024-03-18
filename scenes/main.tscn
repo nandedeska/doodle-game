@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/enemy_manager.gd" id="4_21us5"]
 [ext_resource type="Texture2D" uid="uid://c0pbfdnu78fh1" path="res://sprites/bg.png" id="5_k08l1"]
 [ext_resource type="Shader" uid="uid://duckv0vxw77ug" path="res://shaders/background.tres" id="5_vn3ma"]
-[ext_resource type="Script" path="res://scenes/bullet_counter.gd" id="7_cjq2h"]
+[ext_resource type="Script" path="res://scripts/bullet_counter.gd" id="7_eayxm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vxnma"]
 shader = ExtResource("5_vn3ma")
@@ -104,7 +104,7 @@ grow_horizontal = 2
 text = "HELLO"
 label_settings = SubResource("LabelSettings_s2l0b")
 horizontal_alignment = 1
-script = ExtResource("7_cjq2h")
+script = ExtResource("7_eayxm")
 
 [node name="FPS Counter" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
@@ -114,6 +114,19 @@ offset_left = -25.5
 offset_top = 122.0
 offset_right = 25.5
 offset_bottom = 148.0
+grow_horizontal = 2
+text = "HELLO"
+label_settings = SubResource("LabelSettings_s2l0b")
+horizontal_alignment = 1
+
+[node name="XP Counter" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.5
+offset_top = 163.0
+offset_right = 25.5
+offset_bottom = 189.0
 grow_horizontal = 2
 text = "HELLO"
 label_settings = SubResource("LabelSettings_s2l0b")
