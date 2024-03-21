@@ -17,7 +17,8 @@ config/icon="res://sprites/icon.svg"
 
 [autoload]
 
-Signals="*res://signals.gd"
+Signals="*res://scripts/signals.gd"
+UpgradeManager="*res://scenes/upgrade_manager.tscn"
 
 [input]
 

@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://tabf5msi00c5"]
+[gd_scene load_steps=6 format=3 uid="uid://tabf5msi00c5"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mos0e"]
 [ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="1_nncgs"]
-[ext_resource type="Shader" uid="uid://bucq86mj7guig" path="res://shaders/doodle.tres" id="2_jsoau"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_je36u"]
-shader = ExtResource("2_jsoau")
+[ext_resource type="Material" uid="uid://cns7uxy32dsfe" path="res://shaders/doodle_material.tres" id="2_ongpq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rx1lu"]
 
@@ -16,10 +13,11 @@ size = Vector2(64, 116)
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_mos0e")
+xp_value = 10000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_je36u")
+material = ExtResource("2_ongpq")
 rotation = 3.14159
 scale = Vector2(0.5, 0.9)
 texture = ExtResource("1_nncgs")

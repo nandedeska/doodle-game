@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cns7uxy32dsfe"]
+
+[ext_resource type="Shader" uid="uid://bucq86mj7guig" path="res://shaders/doodle.tres" id="1_36dxe"]
+
+[resource]
+shader = ExtResource("1_36dxe")

@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://uue6w5cy3rlc"]
+
+[ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="1_njd7b"]
+[ext_resource type="Script" path="res://scripts/upgrade_option.gd" id="1_onnu4"]
+[ext_resource type="Material" uid="uid://cns7uxy32dsfe" path="res://shaders/doodle_material.tres" id="2_3e8ml"]
+[ext_resource type="FontFile" uid="uid://d4dkao41m22v2" path="res://fonts/Have Idea.otf" id="3_5glci"]
+
+[sub_resource type="Theme" id="Theme_f3o7f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1w3t"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ec45n"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="UpgradeOption" type="ColorRect"]
+custom_minimum_size = Vector2(450, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -50.0
+offset_right = 225.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_f3o7f")
+color = Color(0.54902, 0.54902, 0.54902, 1)
+script = ExtResource("1_onnu4")
+
+[node name="UpgradeButton" type="Button" parent="."]
+custom_minimum_size = Vector2(450, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -37.5
+offset_right = 95.0
+offset_bottom = 37.5
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="UpgradeIcon" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = -32.5
+offset_right = 32.5
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_njd7b")
+expand_mode = 2
+
+[node name="DisplayName" type="Label" parent="."]
+material = ExtResource("2_3e8ml")
+layout_mode = 1
+offset_left = 100.0
+offset_top = 12.0
+offset_right = 430.0
+offset_bottom = 50.0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_5glci")
+text = "BLAH BLAH"
+label_settings = SubResource("LabelSettings_f1w3t")
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="."]
+material = ExtResource("2_3e8ml")
+layout_mode = 2
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 430.0
+offset_bottom = 79.0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_5glci")
+text = "blah blah blah fr fr"
+label_settings = SubResource("LabelSettings_ec45n")
+vertical_alignment = 1
+
+[connection signal="button_down" from="UpgradeButton" to="." method="_on_upgrade_button_button_down"]

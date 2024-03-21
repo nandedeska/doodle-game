@@ -4,7 +4,7 @@ var player : CharacterBody2D
 var in_player_range := false
 var xp_value := 0
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	if in_player_range:
 		position = position.lerp(player.position, delta * 5)
 		
