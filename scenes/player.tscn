@@ -44,18 +44,19 @@ _data = {
 "player_walk": SubResource("Animation_wutq3")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_73l3r"]
+radius = 300.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_knkgn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cipva"]
 radius = 20.0
 height = 84.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_73l3r"]
-radius = 300.0
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 6
+motion_mode = 1
 script = ExtResource("1_qhial")
 speed = 5.0
 
@@ -77,17 +78,33 @@ libraries = {
 [node name="Stapler" parent="." instance=ExtResource("4_ylj3o")]
 position = Vector2(64, 10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-material = SubResource("ShaderMaterial_knkgn")
-position = Vector2(0, -5)
-shape = SubResource("CapsuleShape2D_cipva")
-
-[node name="Area2D" type="Area2D" parent="."]
+[node name="XP_Bounds" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="XP_Bounds"]
 shape = SubResource("CircleShape2D_73l3r")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="PlayerHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+material = SubResource("ShaderMaterial_knkgn")
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_cipva")
+
+[node name="InvincibilityTimer" type="Timer" parent="PlayerHitbox"]
+wait_time = 0.5
+one_shot = true
+
+[node name="LootInterval" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="area_entered" from="XP_Bounds" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_area_entered"]
+[connection signal="timeout" from="PlayerHitbox/InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="LootInterval" to="." method="_on_loot_interval_timeout"]

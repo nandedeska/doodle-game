@@ -9,11 +9,12 @@ const BULLET = preload("res://scenes/bullet.tscn")
 @export var bullet_spawn_offset : Vector2
 @export var bullet_damage : int
 @export var knockback_power : float
+@export var fire_interval := 1.0
 
 
 func _process(delta: float) -> void:
 	var mouse_pos : Vector2 = get_global_mouse_position()
-	rotation = atan2((mouse_pos.y - $"..".position.y), (mouse_pos.x - $"..".position.x))
+	rotation = atan2((mouse_pos.y - player.position.y), (mouse_pos.x - player.position.x))
 	# look_at(Vector2(mouse_pos.x, mouse_pos.y))
 	if orbit_radius > 0:
 		position = Vector2(orbit_radius * cos(rotation), orbit_radius * sin(rotation))
@@ -37,6 +38,8 @@ func _on_shoot_interval_timeout() -> void:
 	bullet.setup(global_position, global_rotation, 
 			Vector2.RIGHT.rotated(global_rotation), bullet_spawn_offset, 
 			bullet_damage, knockback_power)
+	$ShootInterval.wait_time = fire_interval / player.fire_rate
+	$ShootInterval.start()
 
 	$"/root".add_child(bullet)
 

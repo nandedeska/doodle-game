@@ -1,26 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://tabf5msi00c5"]
+[gd_scene load_steps=6 format=3 uid="uid://kttl6mal3w63"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mos0e"]
-[ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="1_nncgs"]
 [ext_resource type="Material" uid="uid://cns7uxy32dsfe" path="res://shaders/doodle_material.tres" id="2_ongpq"]
+[ext_resource type="Texture2D" uid="uid://ckob356ak8b77" path="res://sprites/enemy_2.png" id="3_niqct"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rx1lu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v084q"]
-size = Vector2(64, 116)
+size = Vector2(100, 120)
 
 [node name="Enemy" type="RigidBody2D"]
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_mos0e")
-xp_value = 10000
+health = 200
+speed = 30.0
+damage = 25
+xp_value = 40
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = ExtResource("2_ongpq")
-rotation = 3.14159
-scale = Vector2(0.5, 0.9)
-texture = ExtResource("1_nncgs")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_niqct")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rx1lu")

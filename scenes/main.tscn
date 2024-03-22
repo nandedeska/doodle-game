@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf54cc47pod3b"]
+[gd_scene load_steps=18 format=3 uid="uid://cf54cc47pod3b"]
 
 [ext_resource type="Script" path="res://scripts/hover.gd" id="1_605hu"]
 [ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="2_t0cv7"]
@@ -8,7 +8,11 @@
 [ext_resource type="Shader" uid="uid://duckv0vxw77ug" path="res://shaders/background.tres" id="5_vn3ma"]
 [ext_resource type="Script" path="res://scripts/bullet_counter.gd" id="7_eayxm"]
 [ext_resource type="Material" uid="uid://cns7uxy32dsfe" path="res://shaders/doodle_material.tres" id="9_7erps"]
-[ext_resource type="FontFile" uid="uid://d4dkao41m22v2" path="res://fonts/Have Idea.otf" id="10_6011a"]
+[ext_resource type="Texture2D" uid="uid://d1cltaqyc1656" path="res://sprites/bar_outline.png" id="9_plgmp"]
+[ext_resource type="FontFile" uid="uid://5jg61lxrege6" path="res://fonts/His Heart is Mine.ttf" id="9_snky4"]
+[ext_resource type="Texture2D" uid="uid://cox6f8x4wuwbs" path="res://sprites/hp_bar_fill.png" id="10_w2cdl"]
+[ext_resource type="Texture2D" uid="uid://dmhupxbcyysi" path="res://sprites/xp_bar_bg.png" id="11_4qxqo"]
+[ext_resource type="Texture2D" uid="uid://ikaa8o87uiby" path="res://sprites/xp_bar_fill.png" id="11_5ay4n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vxnma"]
 shader = ExtResource("5_vn3ma")
@@ -16,8 +20,12 @@ shader = ExtResource("5_vn3ma")
 [sub_resource type="LabelSettings" id="LabelSettings_s2l0b"]
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ljn1a"]
+font = ExtResource("9_snky4")
+font_size = 32
+
 [sub_resource type="LabelSettings" id="LabelSettings_5enre"]
-font = ExtResource("10_6011a")
+font = ExtResource("9_snky4")
 font_size = 45
 
 [node name="Main" type="Node2D"]
@@ -25,6 +33,7 @@ process_mode = 3
 
 [node name="HoverObject" type="Node2D" parent="."]
 process_mode = 1
+visible = false
 script = ExtResource("1_605hu")
 amplitude = 10.0
 frequency = 2.0
@@ -169,6 +178,50 @@ text = "HELLO"
 label_settings = SubResource("LabelSettings_s2l0b")
 horizontal_alignment = 1
 
+[node name="HP_Bar" type="TextureProgressBar" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0.501961)
+material = ExtResource("9_7erps")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 76.0
+offset_right = 50.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 50.0
+value = 50.0
+texture_over = ExtResource("9_plgmp")
+texture_progress = ExtResource("10_w2cdl")
+
+[node name="XP_Bar" type="TextureProgressBar" parent="CanvasLayer"]
+material = ExtResource("9_7erps")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -960.0
+offset_right = 960.0
+offset_bottom = 100.0
+grow_horizontal = 2
+max_value = 50.0
+value = 50.0
+texture_under = ExtResource("11_4qxqo")
+texture_progress = ExtResource("11_5ay4n")
+
+[node name="Level_Text" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_bottom = 100.0
+grow_horizontal = 0
+text = "Level 1"
+label_settings = SubResource("LabelSettings_ljn1a")
+vertical_alignment = 1
+
 [node name="UpgradePanel" type="Panel" parent="CanvasLayer"]
 visible = false
 anchors_preset = 8
@@ -184,7 +237,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/UpgradePanel"]
-material = ExtResource("9_7erps")
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

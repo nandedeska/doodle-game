@@ -1,7 +1,7 @@
 extends Node
 
-signal pause_game(toggle)
-signal select_upgrade(upgrade)
+signal pause_game(toggle: bool)
+signal select_upgrade(upgrade: String)
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -11,6 +11,6 @@ func _ready() -> void:
 	connect("select_upgrade", Callable(player, "upgrade_player"))
 	
 
-func toggle_pause(toggle) -> void:
+func toggle_pause(toggle: bool) -> void:
 	get_tree().paused = toggle
 	

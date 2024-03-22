@@ -1,6 +1,9 @@
 extends Node
 
-const  ENEMY = preload("res://scenes/enemy.tscn")
+const ENEMIES = [
+	preload("res://scenes/purple_enemy.tscn"),
+	preload("res://scenes/yellow_enemy.tscn"),
+]
 
 @onready var time_start := Time.get_ticks_msec()
 @export var player : CharacterBody2D
@@ -22,7 +25,7 @@ func _process(delta: float) -> void:
 
 
 func spawn() -> void:
-	var enemy = ENEMY.instantiate()
+	var enemy = ENEMIES.pick_random().instantiate()
 	$"/root".add_child.call_deferred(enemy)
 	enemy.player = player
 

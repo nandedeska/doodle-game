@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0tvu3s62dwj6"]
+
+[ext_resource type="Script" path="res://scripts/hover.gd" id="1_8lnb7"]
+[ext_resource type="Texture2D" uid="uid://b2ian43sptvd" path="res://sprites/apple.png" id="1_l6uh5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lbq3b"]
+radius = 20.0
+
+[node name="Apple" type="Area2D" groups=["loot"]]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_8lnb7")
+amplitude = 10.0
+frequency = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_l6uh5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lbq3b")

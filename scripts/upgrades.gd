@@ -31,6 +31,13 @@ const UPGRADES = {
 		"prerequisites": ["fire_rate_1"],
 		"type": "weapon",
 	},
+	"fire_rate_3": {
+		"icon": ICON_PATH + "fire_rate.png",
+		"display_name": "Faster Fire Rate III",
+		"description": "Fire rate is increased to 2.5x the base speed.",
+		"prerequisites": ["fire_rate_2"],
+		"type": "weapon",
+	},
 	"maximum_health_1": {
 		"icon": ICON_PATH + "hp_max.png",
 		"display_name": "Increase Max HP",

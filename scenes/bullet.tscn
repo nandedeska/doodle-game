@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bls2rkctw2oqw"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_wls60"]
-[ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="2_icmuc"]
+[ext_resource type="Texture2D" uid="uid://chmhubobyixxv" path="res://sprites/staple.png" id="2_c4yf1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqw2g"]
+size = Vector2(10, 30)
 
 [node name="Bullet" type="Area2D" groups=["bullet"]]
 collision_layer = 4
@@ -14,7 +15,8 @@ script = ExtResource("1_wls60")
 shape = SubResource("RectangleShape2D_tqw2g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("2_icmuc")
+rotation = -0.0349066
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_c4yf1")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

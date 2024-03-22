@@ -2,11 +2,12 @@ extends RigidBody2D
 
 const EXP_ORB = preload("res://scenes/xp_orb.tscn")
 
-@export var maximum_health : int = 50
-var health := maximum_health
+@export var health : int = 50
 @export var speed := 50.0
+@export var damage : int = 10
 var player : CharacterBody2D
-@export var xp_value := 5
+@export var xp_value : int = 5
+@onready var sprite := $Sprite2D
 
 var is_hit : bool
 var direction := Vector2.ZERO
@@ -18,6 +19,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	var frames = Engine.get_process_frames()
 	direction = (player.position - position).normalized()
 	var distance_to_player = position.distance_to(player.position)
 		
@@ -32,20 +34,25 @@ func _physics_process(delta: float) -> void:
 		
 	if distance_to_player > 5:
 		if distance_to_player > 3000:
-			if Engine.get_process_frames() % 30 == 0:
+			if frames % 30 == 0:
 				movement += direction * speed * delta
 		elif distance_to_player > 1500:
-			if Engine.get_process_frames() % 15 == 0:
+			if frames % 15 == 0:
 				movement += direction * speed * delta
 		else:
 			movement += direction * speed * delta
-			
 
 	if is_hit:
 #		translate(knockback_direction * delta)
 		movement += knockback_direction * delta
 		
 	move_and_collide(movement)
+	
+	if frames % 10:
+		if position.x < player.position.x:
+			sprite.flip_h = false
+		else:
+			sprite.flip_h = true
 
 
 func hit(damage: int, knockback: Vector2) -> void:
@@ -105,4 +112,3 @@ func random_position_outside_player_view() -> Vector2:
 
 func _on_knockback_timer_timeout() -> void:
 	is_hit = false
-

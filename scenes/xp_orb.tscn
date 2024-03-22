@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0fv1ubbw67a2"]
 
-[ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="1_rhf1m"]
 [ext_resource type="Script" path="res://scripts/xp_orb.gd" id="2_cj4b3"]
+[ext_resource type="Texture2D" uid="uid://dnhcpbpuv1owy" path="res://sprites/xp_orb.png" id="2_g65nn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_faeff"]
 radius = 64.0078
@@ -14,7 +14,8 @@ monitoring = false
 script = ExtResource("2_cj4b3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_rhf1m")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_g65nn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_faeff")

@@ -12,7 +12,7 @@ texture = ExtResource("2_5c6pw")
 flip_h = true
 script = ExtResource("3_0uvna")
 orbit_radius = 75.0
-bullet_spawn_offset = Vector2(100, 0)
+bullet_spawn_offset = Vector2(20, 0)
 bullet_damage = 20
 knockback_power = 200.0
 

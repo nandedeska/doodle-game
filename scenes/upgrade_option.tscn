@@ -2,16 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://cg7mido0r53vr" path="res://sprites/icon.svg" id="1_njd7b"]
 [ext_resource type="Script" path="res://scripts/upgrade_option.gd" id="1_onnu4"]
-[ext_resource type="Material" uid="uid://cns7uxy32dsfe" path="res://shaders/doodle_material.tres" id="2_3e8ml"]
 [ext_resource type="FontFile" uid="uid://d4dkao41m22v2" path="res://fonts/Have Idea.otf" id="3_5glci"]
+[ext_resource type="FontFile" uid="uid://5jg61lxrege6" path="res://fonts/His Heart is Mine.ttf" id="5_qax7i"]
 
 [sub_resource type="Theme" id="Theme_f3o7f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f1w3t"]
+font = ExtResource("5_qax7i")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ec45n"]
+font = ExtResource("5_qax7i")
 font_color = Color(0, 0, 0, 1)
 
 [node name="UpgradeOption" type="ColorRect"]
@@ -28,7 +30,6 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_f3o7f")
-color = Color(0.54902, 0.54902, 0.54902, 1)
 script = ExtResource("1_onnu4")
 
 [node name="UpgradeButton" type="Button" parent="."]
@@ -51,7 +52,7 @@ offset_top = -37.5
 offset_right = 95.0
 offset_bottom = 37.5
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.772549, 0.8, 0.913725, 1)
 
 [node name="UpgradeIcon" type="TextureRect" parent="ColorRect"]
 layout_mode = 1
@@ -70,11 +71,10 @@ texture = ExtResource("1_njd7b")
 expand_mode = 2
 
 [node name="DisplayName" type="Label" parent="."]
-material = ExtResource("2_3e8ml")
 layout_mode = 1
-offset_left = 100.0
+offset_left = 110.0
 offset_top = 12.0
-offset_right = 430.0
+offset_right = 440.0
 offset_bottom = 50.0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_5glci")
@@ -83,11 +83,10 @@ label_settings = SubResource("LabelSettings_f1w3t")
 vertical_alignment = 1
 
 [node name="Description" type="Label" parent="."]
-material = ExtResource("2_3e8ml")
 layout_mode = 2
-offset_left = 100.0
+offset_left = 110.0
 offset_top = 50.0
-offset_right = 430.0
+offset_right = 440.0
 offset_bottom = 79.0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_5glci")

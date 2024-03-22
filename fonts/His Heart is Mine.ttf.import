@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://5jg61lxrege6"
+path="res://.godot/imported/His Heart is Mine.ttf-12e3e8be7a6050e45620f0228984f3c9.fontdata"
+
+[deps]
+
+source_file="res://fonts/His Heart is Mine.ttf"
+dest_files=["res://.godot/imported/His Heart is Mine.ttf-12e3e8be7a6050e45620f0228984f3c9.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=true
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
